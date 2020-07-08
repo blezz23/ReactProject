@@ -1,0 +1,7 @@
+.avatar {
+    grid-area: avatar;
+    background-color: #ffb38f;
+}
+.avatar img {
+    width: 250px;
+}
