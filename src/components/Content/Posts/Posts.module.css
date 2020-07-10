@@ -1,0 +1,8 @@
+.posts {
+     grid-area: posts;
+     background-color: #ffb38f;
+ }
+.posts img {
+    width: 50px;
+    height: 50px;
+}
