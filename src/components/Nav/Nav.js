@@ -1,26 +1,27 @@
 import React from 'react';
 import s from "./Nav.module.css";
+import {NavLink} from "react-router-dom";
 
-function Nav() {
+const Nav = (props) => {
     return (
         <div className={s.nav}>
             <div className={s.item}>
-                <a href='../../index.js'>Мой профиль</a>
+                <NavLink to='/main'>Мой профиль</NavLink>
             </div>
-            <div>
-                <a href='../../index.js'>Друзья</a>
+            <div className={s.item}>
+                <NavLink to='/friends'>Друзья</NavLink>
             </div>
-            <div>
-                <a href='../../index.js'>Сообщения</a>
+            <div className={s.item}>
+                <NavLink to='/dialogs'>Сообщения</NavLink>
             </div>
-            <div>
-                <a href='../../index.js'>Новости</a>
+            <div className={s.item}>
+                <NavLink to='/news'>Новости</NavLink>
             </div>
-            <div>
-                <a href='../../index.js'>Настройки</a>
+            <div className={s.item}>
+                <NavLink to='/settings'>Настройки</NavLink>
             </div>
         </div>
     );
-}
+};
 
 export default Nav;

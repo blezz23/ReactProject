@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./Avatar.module.css"
 
-function Avatar() {
+const Avatar = (props) => {
     return (
         <div className={s.avatar}>
             <div>
@@ -12,6 +12,6 @@ function Avatar() {
             </div>
         </div>
     );
-}
+};
 
 export default Avatar;

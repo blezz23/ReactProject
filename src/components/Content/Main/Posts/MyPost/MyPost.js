@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./MyPost.module.css"
 
-function MyPost() {
+const MyPost = (props) => {
     return (
         <div className={s.myPost}>
             <div>
@@ -11,6 +11,6 @@ function MyPost() {
             </div>
         </div>
     );
-}
+};
 
 export default MyPost;

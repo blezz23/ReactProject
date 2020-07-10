@@ -1,10 +1,10 @@
 import React from 'react';
-import s from "./Content.module.css"
+import s from "./Main.module.css"
 import Avatar from "./Avatar/Avatar";
 import Posts from "./Posts/Posts";
 import MyPost from "./Posts/MyPost/MyPost";
 
-function Content() {
+const Main = (props) => {
     return (
         <div className={s.content}>
             <Avatar />
@@ -12,6 +12,6 @@ function Content() {
             <Posts />
         </div>
     );
-}
+};
 
-export default Content;
+export default Main;
