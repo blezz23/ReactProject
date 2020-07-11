@@ -24,24 +24,24 @@ const dialogsData = [
     {id: 3, name: 'Kostya'}
 ];
 
+const dialogsElements = dialogsData.map(d => <DialogItem name={d.name} id={d.id}/>);
+
 const messagesData = [
     {id: 1, message: 'Hi'},
     {id: 2, message: 'Lol'},
     {id: 3, message: 'Yo'}
 ];
 
+const messagesElements = messagesData.map(m => <Message message={m.message}/>);
+
 const Dialogs = (props) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
-                <DialogItem name={dialogsData[0].name} id={dialogsData[0].id} />
-                <DialogItem name={dialogsData[1].name} id={dialogsData[1].id} />
-                <DialogItem name={dialogsData[2].name} id={dialogsData[2].id} />
+                {dialogsElements}
             </div>
             <div className={s.messages}>
-                <Message message={messagesData[0].message} />
-                <Message message={messagesData[1].message} />
-                <Message message={messagesData[2].message} />
+                {messagesElements}
             </div>
         </div>
     );
