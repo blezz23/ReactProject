@@ -9,7 +9,7 @@ const Main = (props) => {
         <div className={s.content}>
             <Avatar />
             <MyPost />
-            <Posts posts={props.posts}/>
+            <Posts posts={props.state.postsData}/>
         </div>
     );
 };
