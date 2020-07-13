@@ -1,6 +1,6 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr 2fr 8fr;
 }
 
 .dialogsItem {
@@ -17,4 +17,10 @@
 
 .message {
 
+}
+
+.avatar {
+    padding: 2px;
+    width: 30px;
+    height: 30px;
 }
