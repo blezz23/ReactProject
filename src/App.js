@@ -13,20 +13,26 @@ import {Route} from "react-router-dom";
 const App = (props) => {
     return (
         <div className="app-wrapper">
-            <Header/>
-            <Nav/>
-            <Footer/>
+            <Header />
+            <Nav />
+            <Footer />
             <div className="add-wrapper-content">
                 <Route path="/main"
-                       render={() => <Main state={props.state.mainPage} addPost={props.addPost}/>}/>
+                       render={() => <Main
+                           state={props.state.mainPage}
+                           addPost={props.addPost}
+                           updateNewPostText={props.updateNewPostText} />} />
                 <Route path="/friends"
-                       render={() => <Friends state={props.state.friendsPage}/>}/>
+                       render={() => <Friends state={props.state.friendsPage} />} />
                 <Route path="/dialogs"
-                       render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                       render={() => <Dialogs
+                           state={props.state.dialogsPage}
+                           addMessage={props.addMessage}
+                           updateNewMessage={props.updateNewMessage} />} />
                 <Route path="/news"
-                       render={() => <News/>}/>
+                       render={() => <News />} />
                 <Route path="/settings"
-                       render={() => <Settings/>}/>
+                       render={() => <Settings />} />
             </div>
         </div>
     );

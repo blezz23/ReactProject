@@ -6,7 +6,8 @@ const state = {
             {id: 1, message: 'lol'},
             {id: 2, message: 'ne lol'},
             {id: 3, message: 'da ne'}
-        ]
+        ],
+        newPostText: 'newText'
     },
     dialogsPage: {
         dialogsData: [
@@ -18,7 +19,8 @@ const state = {
             {id: 1, name: "Nikita", message: 'Hi'},
             {id: 2, name: "Maxim", message: 'Lol'},
             {id: 3, name: "Kostya", message: 'Yo'}
-        ]
+        ],
+        newMessagesText: 'message'
     },
     friendsPage: {
         friendsData: [
@@ -29,13 +31,36 @@ const state = {
     }
 };
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
     let newPost = {
-        id: 5,
-        message: postMessage
+        id: 4,
+        message: state.mainPage.newPostText
     };
 
     state.mainPage.postsData.push(newPost);
+    state.mainPage.newPostText = '';
+    rerenderEntireTree(state);
+};
+
+export let addMessage = () => {
+    let newMessage = {
+        id: 4,
+        name: "I",
+        message: state.dialogsPage.newMessagesText
+    };
+
+    state.dialogsPage.messagesData.push(newMessage);
+    state.dialogsPage.newMessagesText = '';
+    rerenderEntireTree(state);
+};
+
+export let updateNewPostText = (newText) => {
+    state.mainPage.newPostText = newText;
+    rerenderEntireTree(state);
+};
+
+export let updateNewMessage = (newTextMessage) => {
+    state.dialogsPage.newMessagesText = newTextMessage;
     rerenderEntireTree(state);
 };
 
