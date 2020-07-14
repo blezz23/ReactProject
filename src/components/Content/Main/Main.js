@@ -8,7 +8,7 @@ const Main = (props) => {
     return (
         <div className={s.content}>
             <Avatar />
-            <MyPost />
+            <MyPost addPost={props.addPost} />
             <Posts posts={props.state.postsData}/>
         </div>
     );

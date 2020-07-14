@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 const state = {
     mainPage: {
         postsData: [
@@ -25,6 +27,16 @@ const state = {
             {id: 3, name: "Kostya", avatar: "https://www.meme-arsenal.com/memes/549e8c6d71ae27a2ebd13a7580d71d80.jpg"}
         ]
     }
+};
+
+export let addPost = (postMessage) => {
+    let newPost = {
+        id: 5,
+        message: postMessage
+    };
+
+    state.mainPage.postsData.push(newPost);
+    rerenderEntireTree(state);
 };
 
 export default state;
