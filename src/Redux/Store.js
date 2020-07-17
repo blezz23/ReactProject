@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
+
 const store = {
     _state: {
         mainPage: {
@@ -72,4 +77,8 @@ const store = {
     }
 };
 
+export const addPostActionCreator = () => ({ type: ADD_POST });
+export const addNewMessageActionCreator = () => ({ type: ADD_MESSAGE });
+export const newPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text });
+export const newMessageTextActionCreator = (text) => ({ type: UPDATE_NEW_MESSAGE, newTextMessage: text });
 export default store;
