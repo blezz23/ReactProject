@@ -9,9 +9,8 @@ const Main = (props) => {
         <div className={s.content}>
             <Avatar />
             <MyPost
-                addPost={props.addPost}
                 newPostText={props.state.newPostText}
-                updateNewPostText={props.updateNewPostText} />
+                dispatch={props.dispatch} />
             <Posts posts={props.state.postsData} />
         </div>
     );

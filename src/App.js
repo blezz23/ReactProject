@@ -20,15 +20,13 @@ const App = (props) => {
                 <Route path="/main"
                        render={() => <Main
                            state={props.store.getState().mainPage}
-                           addPost={props.store.addPost.bind(props.store)}
-                           updateNewPostText={props.store.updateNewPostText.bind(props.store)} />} />
+                           dispatch={props.store.dispatch.bind(props.store)} />} />
                 <Route path="/friends"
                        render={() => <Friends state={props.store.getState().friendsPage} />} />
                 <Route path="/dialogs"
                        render={() => <Dialogs
                            state={props.store.getState().dialogsPage}
-                           addMessage={props.store.addMessage.bind(props.store)}
-                           updateNewMessage={props.store.updateNewMessage.bind(props.store)} />} />
+                           dispatch={props.store.dispatch.bind(props.store)} />} />
                 <Route path="/news"
                        render={() => <News />} />
                 <Route path="/settings"

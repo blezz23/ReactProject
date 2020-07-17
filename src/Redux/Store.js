@@ -30,48 +30,46 @@ const store = {
         }
     },
 
+    _rerenderEntireTree: () => {},
+
     getState() {
         return this._state;
     },
 
-    addPost() {
-        let newPost = {
-            id: 4,
-            message: this._state.mainPage.newPostText
-        };
-
-        this._state.mainPage.postsData.push(newPost);
-        this._state.mainPage.newPostText = '';
-        this.rerenderEntireTree(this._state);
-    },
-
-    addMessage() {
-        let newMessage = {
-            id: 4,
-            name: "I",
-            message: this._state.dialogsPage.newMessagesText
-        };
-
-        this._state.dialogsPage.messagesData.push(newMessage);
-        this._state.dialogsPage.newMessagesText = '';
-        this.rerenderEntireTree(this._state);
-    },
-
-    updateNewPostText(newText) {
-        this._state.mainPage.newPostText = newText;
-        this.rerenderEntireTree(this._state);
-    },
-
-    updateNewMessage(newTextMessage) {
-        this._state.dialogsPage.newMessagesText = newTextMessage;
-        this.rerenderEntireTree(this._state);
-    },
-
     subscribe(observer) {
-        this.rerenderEntireTree = observer;
+        this._rerenderEntireTree = observer;
     },
 
-    rerenderEntireTree: () => {}
+    dispatch(action) {
+        if (action.type === "ADD-POST") {
+            let newPost = {
+                id: 4,
+                message: this._state.mainPage.newPostText
+            };
+
+            this._state.mainPage.postsData.push(newPost);
+            this._state.mainPage.newPostText = '';
+            this._rerenderEntireTree(this._state);
+        }
+        else if (action.type === "ADD-MESSAGE") {
+            let newMessage = {
+                id: 4,
+                name: "I",
+                message: this._state.dialogsPage.newMessagesText
+            };
+            this._state.dialogsPage.messagesData.push(newMessage);
+            this._state.dialogsPage.newMessagesText = '';
+            this._rerenderEntireTree(this._state);
+        }
+        else if (action.type === "UPDATE-NEW-POST-TEXT") {
+            this._state.mainPage.newPostText = action.newText;
+            this._rerenderEntireTree(this._state);
+        }
+        else if (action.type === "UPDATE-NEW-MESSAGE") {
+            this._state.dialogsPage.newMessagesText = action.newTextMessage;
+            this._rerenderEntireTree(this._state);
+        }
+    }
 };
 
 export default store;
