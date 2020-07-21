@@ -1,7 +1,5 @@
-const ADD_POST = 'ADD-POST';
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
+import mainReducer from "./main-reducer";
+import dialogsReducer from "./dialogs-reducer";
 
 const store = {
     _state: {
@@ -11,7 +9,7 @@ const store = {
                 {id: 2, message: 'ne lol'},
                 {id: 3, message: 'da ne'}
             ],
-            newPostText: 'newText'
+            newPostText: ''
         },
         dialogsPage: {
             dialogsData: [
@@ -24,7 +22,7 @@ const store = {
                 {id: 2, name: "Maxim", message: 'Lol'},
                 {id: 3, name: "Kostya", message: 'Yo'}
             ],
-            newMessagesText: 'message'
+            newMessagesText: ''
         },
         friendsPage: {
             friendsData: [
@@ -46,39 +44,10 @@ const store = {
     },
 
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            let newPost = {
-                id: 4,
-                message: this._state.mainPage.newPostText
-            };
-
-            this._state.mainPage.postsData.push(newPost);
-            this._state.mainPage.newPostText = '';
-            this._rerenderEntireTree(this._state);
-        }
-        else if (action.type === "ADD-MESSAGE") {
-            let newMessage = {
-                id: 4,
-                name: "I",
-                message: this._state.dialogsPage.newMessagesText
-            };
-            this._state.dialogsPage.messagesData.push(newMessage);
-            this._state.dialogsPage.newMessagesText = '';
-            this._rerenderEntireTree(this._state);
-        }
-        else if (action.type === "UPDATE-NEW-POST-TEXT") {
-            this._state.mainPage.newPostText = action.newText;
-            this._rerenderEntireTree(this._state);
-        }
-        else if (action.type === "UPDATE-NEW-MESSAGE") {
-            this._state.dialogsPage.newMessagesText = action.newTextMessage;
-            this._rerenderEntireTree(this._state);
-        }
+        this._state.mainPage = mainReducer(this._state.mainPage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._rerenderEntireTree(this._state);
     }
 };
 
-export const addPostActionCreator = () => ({ type: ADD_POST });
-export const addNewMessageActionCreator = () => ({ type: ADD_MESSAGE });
-export const newPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text });
-export const newMessageTextActionCreator = (text) => ({ type: UPDATE_NEW_MESSAGE, newTextMessage: text });
 export default store;
