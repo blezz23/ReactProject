@@ -1,4 +1,13 @@
-const friendsReducer = (state, action) => {
+let initialState = {
+    friendsData: [
+        {id: 1, name: "Nikita", avatar: "https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg"},
+        {id: 2, name: "Maxim", avatar: "https://pm1.narvii.com/7388/55ffd10f441052afd8858b4a53216ae0a64883e3r1-2048-2048v2_hq.jpg"},
+        {id: 3, name: "Kostya", avatar: "https://www.meme-arsenal.com/memes/549e8c6d71ae27a2ebd13a7580d71d80.jpg"}
+    ]
+};
 
+const friendsReducer = (state = initialState, action) => {
     return state;
 };
+
+export default friendsReducer;
