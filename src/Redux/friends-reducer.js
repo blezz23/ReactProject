@@ -1,13 +1,46 @@
+const FOLLOW = "FOLLOW";
+const UNFOLLOW = "UNFOLLOW";
+const SET_FRIENDS = "SET_FRIENDS";
+
 let initialState = {
-    friendsData: [
-        {id: 1, name: "Nikita", avatar: "https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg"},
-        {id: 2, name: "Maxim", avatar: "https://pm1.narvii.com/7388/55ffd10f441052afd8858b4a53216ae0a64883e3r1-2048-2048v2_hq.jpg"},
-        {id: 3, name: "Kostya", avatar: "https://www.meme-arsenal.com/memes/549e8c6d71ae27a2ebd13a7580d71d80.jpg"}
-    ]
+    friendsData: []
 };
 
 const friendsReducer = (state = initialState, action) => {
-    return state;
+    switch (action.type) {
+        case FOLLOW:
+            return {
+                ...state,
+                friendsData: state.friendsData.map(u => {
+                    if (u.id === action.userID) {
+                        return {...u, followed: true}
+                    }
+                    return u;
+                })
+            };
+        case UNFOLLOW:
+            return {
+                ...state,
+                friendsData: state.friendsData.map(u => {
+                    if(u.id === action.userID) {
+                        return {...u, followed: false}
+                    }
+                    return u;
+                })
+            };
+        case SET_FRIENDS:
+            return {
+                ...state,
+                friendsData: [...state.friendsData, ...action.friends]
+            };
+        default:
+            return state;
+    }
 };
+
+export const followedActionCreator = (userID) => ({type: FOLLOW, userID});
+export const unfollowedActionCreator = (userID) => ({type: UNFOLLOW, userID});
+export const setFriendsActionCreator = (friends) => ({type: SET_FRIENDS, friends});
+
 
 export default friendsReducer;

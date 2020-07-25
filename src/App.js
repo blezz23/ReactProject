@@ -2,27 +2,25 @@ import React from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
-import Footer from "./components/Footer/Footer";
 import Main from "./components/Content/Main/Main";
-import Friends from "./components/Content/Friends/Friends";
 import News from "./components/Content/News/News";
 import Settings from "./components/Content/Settings/Settings";
 import {Route} from "react-router-dom";
 import DialogsContainer from "./components/Content/Dialogs/DialogsContainer";
+import FriendsContainer from "./components/Content/Friends/FriendsContainer";
 
 const App = (props) => {
     return (
         <div className="app-wrapper">
             <Header />
             <Nav />
-            <Footer />
             <div className="add-wrapper-content">
                 <Route path="/main"
-                       render={() => <Main store={props.store} />} />
+                       render={() => <Main />} />
                 <Route path="/friends"
-                       render={() => <Friends state={props.store.getState().friendsPage} />} />
+                       render={() => <FriendsContainer />} />
                 <Route path="/dialogs"
-                       render={() => <DialogsContainer store={props.store} />} />
+                       render={() => <DialogsContainer />} />
                 <Route path="/news"
                        render={() => <News />} />
                 <Route path="/settings"

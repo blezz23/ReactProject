@@ -2,7 +2,7 @@ import React from 'react';
 import s from "./MyPost.module.css"
 
 const MyPost = (props) => {
-    let newPostBody = props.state.newPostText;
+    let newPostBody = props.newPostText;
     let onAddPost = () => {
         props.addPost();
     };

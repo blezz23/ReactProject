@@ -17,17 +17,21 @@ const mainReducer = (state = initialState, action) => {
                 id: 4,
                 message: state.newPostText
             };
-            state.postsData.push(newPost);
-            state.newPostText = '';
-            return state;
+            return {
+                ...state,
+                postsData: [...state.postsData, newPost],
+                newPostText: ''
+            };
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newTextPost;
-            return state;
+            return {
+                ...state,
+                newPostText: action.newTextPost
+            };
         default:
             return state;
     }
 };
 
-export const addPostActionCreator = () => ({ type: ADD_POST });
-export const newPostTextActionCreator = (body) => ({ type: UPDATE_NEW_POST_TEXT, newTextPost: body });
+export const addPostActionCreator = () => ({type: ADD_POST});
+export const newPostTextActionCreator = (body) => ({type: UPDATE_NEW_POST_TEXT, newTextPost: body});
 export default mainReducer;
