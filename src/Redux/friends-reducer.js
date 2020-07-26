@@ -1,9 +1,14 @@
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_FRIENDS = "SET_FRIENDS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const TOTAL_USERS_COUNT = "TOTAL_USERS_COUNT";
 
 let initialState = {
-    friendsData: []
+    friendsData: [],
+    pageSize: 10,
+    totalUsersCount: 0,
+    currentPage: 1
 };
 
 const friendsReducer = (state = initialState, action) => {
@@ -22,7 +27,7 @@ const friendsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 friendsData: state.friendsData.map(u => {
-                    if(u.id === action.userID) {
+                    if (u.id === action.userID) {
                         return {...u, followed: false}
                     }
                     return u;
@@ -31,7 +36,17 @@ const friendsReducer = (state = initialState, action) => {
         case SET_FRIENDS:
             return {
                 ...state,
-                friendsData: [...state.friendsData, ...action.friends]
+                friendsData: action.friends
+            };
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.currentPage
+            };
+        case TOTAL_USERS_COUNT:
+            return {
+                ...state,
+                totalUsersCount: action.totalUsersCount
             };
         default:
             return state;
@@ -41,6 +56,7 @@ const friendsReducer = (state = initialState, action) => {
 export const followedActionCreator = (userID) => ({type: FOLLOW, userID});
 export const unfollowedActionCreator = (userID) => ({type: UNFOLLOW, userID});
 export const setFriendsActionCreator = (friends) => ({type: SET_FRIENDS, friends});
-
+export const setCurrentPageActionCreator = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const totalUsersCountActionCreator = (totalUsersCount) => ({type: TOTAL_USERS_COUNT, totalUsersCount});
 
 export default friendsReducer;
