@@ -1,6 +1,7 @@
 import s from "./Friends.module.css";
 import userPhoto from "../../../Redux/123.png";
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 const Friends = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -20,7 +21,9 @@ const Friends = (props) => {
             props.friendsData.map(f => <div className={s.friend} key={f.id}>
                 <span>
                     <div>
-                        <img alt="" src={f.photos.small != null ? f.photos.small : userPhoto}/>
+                        <NavLink to={'/main/' + f.id}>
+                            <img alt="" src={f.photos.small != null ? f.photos.small : userPhoto}/>
+                        </NavLink>
                     </div>
                     <div>
                         {f.name}

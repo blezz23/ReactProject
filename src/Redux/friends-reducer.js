@@ -61,11 +61,11 @@ const friendsReducer = (state = initialState, action) => {
     }
 };
 
-export const followedActionCreator = (userID) => ({type: FOLLOW, userID});
-export const unfollowedActionCreator = (userID) => ({type: UNFOLLOW, userID});
-export const setFriendsActionCreator = (friends) => ({type: SET_FRIENDS, friends});
-export const setCurrentPageActionCreator = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
-export const totalUsersCountActionCreator = (totalUsersCount) => ({type: TOTAL_USERS_COUNT, totalUsersCount});
-export const toggleIsFetchingAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const followed = (userID) => ({type: FOLLOW, userID});
+export const unfollowed = (userID) => ({type: UNFOLLOW, userID});
+export const setFriends = (friends) => ({type: SET_FRIENDS, friends});
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setTotalUsersCount = (totalUsersCount) => ({type: TOTAL_USERS_COUNT, totalUsersCount});
+export const setToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 export default friendsReducer;

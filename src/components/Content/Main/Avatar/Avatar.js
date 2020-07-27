@@ -5,7 +5,7 @@ const Avatar = (props) => {
     return (
         <div className={s.avatar}>
             <div>
-                <img alt='' src={'https://www.garant.ru/files/9/5/1284159/kak-zaschitit-svoe-pravo-na-ohranu-izobrazheniya_300.jpg'} />
+                <img alt='' src={props.avatar?.photos.small} />
             </div>
             <div>
                 Редактировать аватар

@@ -4,11 +4,13 @@ import {connect} from 'react-redux';
 import Friends from './Friends';
 import Preloader from "../../common/Preloader/Preloader";
 import {
-    followedActionCreator,
-    setCurrentPageActionCreator,
-    setFriendsActionCreator, toggleIsFetchingAC, totalUsersCountActionCreator,
-    unfollowedActionCreator
-} from '../../../Redux/friends-reducer';
+    followed,
+    setCurrentPage,
+    setFriends,
+    setToggleIsFetching,
+    setTotalUsersCount,
+    unfollowed
+} from "../../../Redux/friends-reducer";
 
 class FriendsContainer extends React.Component {
     componentDidMount() {
@@ -41,8 +43,8 @@ class FriendsContainer extends React.Component {
                 currentPage={this.props.currentPage}
                 friendsData={this.props.friendsData}
                 onPageChanged={this.onPageChanged}
-                follow={this.props.follow}
-                unfollow={this.props.unfollow}/>
+                follow={this.props.followed}
+                unfollow={this.props.unfollowed}/>
         </>
     }
 }
@@ -58,28 +60,6 @@ let mapStateToProps = (props) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userID) => {
-            dispatch(followedActionCreator(userID));
-        },
-        unfollow: (userID) => {
-            dispatch(unfollowedActionCreator(userID));
-        },
-        setFriends: (friends) => {
-            dispatch(setFriendsActionCreator(friends));
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageActionCreator(pageNumber));
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(totalUsersCountActionCreator(totalCount));
-        },
-        setToggleIsFetching: (isFetching) => {
-            dispatch(toggleIsFetchingAC(isFetching));
-        }
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FriendsContainer);
+export default connect(mapStateToProps, {followed, unfollowed, setFriends, setCurrentPage,
+    setTotalUsersCount, setToggleIsFetching})(FriendsContainer);
 
