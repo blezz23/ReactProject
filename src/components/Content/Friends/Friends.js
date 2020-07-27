@@ -10,7 +10,7 @@ const Friends = (props) => {
     }
 
     return <div className={s.friends}>
-        <div>
+            <div>
             {pages.map(p => {
                 return <span className={`${props.currentPage === p && s.selectedPage} ${s.pagesNumbers}`}
                              onClick={(event) => {props.onPageChanged(p)}}>{p}</span>
