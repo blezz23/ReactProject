@@ -8,7 +8,8 @@ let initialState = {
     friendsData: [],
     pageSize: 10,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    friend: false
 };
 
 const friendsReducer = (state = initialState, action) => {
