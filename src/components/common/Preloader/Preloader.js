@@ -1,5 +1,5 @@
-import s from "./Preloader.module.css";
-import React from "react";
+import s from './Preloader.module.css';
+import React from 'react';
 
 const Preloader = () => {
     return <div className={s.lds_ellipsis}>

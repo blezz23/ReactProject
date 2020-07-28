@@ -1,9 +1,9 @@
-const FOLLOW = "FOLLOW";
-const UNFOLLOW = "UNFOLLOW";
-const SET_FRIENDS = "SET_FRIENDS";
-const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-const TOTAL_USERS_COUNT = "TOTAL_USERS_COUNT";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
+const SET_FRIENDS = 'SET_FRIENDS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const TOTAL_USERS_COUNT = 'TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
     friendsData: [],
@@ -51,7 +51,7 @@ const friendsReducer = (state = initialState, action) => {
                 ...state,
                 totalUsersCount: action.totalUsersCount
             };
-            case TOGGLE_IS_FETCHING:
+        case TOGGLE_IS_FETCHING:
             return {
                 ...state,
                 isFetching: action.isFetching

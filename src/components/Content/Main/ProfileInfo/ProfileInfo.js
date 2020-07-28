@@ -5,7 +5,7 @@ const ProfileInfo = (props) => {
     let contactsObj = {};
 
     for (let cont in props.profileInfo?.contacts) {
-        if (props.profileInfo?.contacts[cont] != null) {
+        if (props.profileInfo?.contacts[cont]) {
             contactsObj[cont] = props.profileInfo?.contacts[cont];
         }
     }

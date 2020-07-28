@@ -2,7 +2,7 @@ import React from 'react';
 import * as axios from 'axios';
 import {connect} from 'react-redux';
 import Friends from './Friends';
-import Preloader from "../../common/Preloader/Preloader";
+import Preloader from '../../common/Preloader/Preloader';
 import {
     followed,
     setCurrentPage,
@@ -36,7 +36,7 @@ class FriendsContainer extends React.Component {
     render() {
         return <>
             {this.props.isFetching ?
-                <Preloader /> : null}
+                <Preloader/> : null}
             <Friends
                 totalUsersCount={this.props.totalUsersCount}
                 pageSize={this.props.pageSize}
@@ -60,6 +60,8 @@ let mapStateToProps = (props) => {
     }
 };
 
-export default connect(mapStateToProps, {followed, unfollowed, setFriends, setCurrentPage,
-    setTotalUsersCount, setToggleIsFetching})(FriendsContainer);
+export default connect(mapStateToProps, {
+    followed, unfollowed, setFriends, setCurrentPage,
+    setTotalUsersCount, setToggleIsFetching
+})(FriendsContainer);
 
