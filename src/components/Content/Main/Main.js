@@ -10,8 +10,8 @@ const Main = (props) => {
         <div className={s.content}>
             <Avatar avatar={props.userProfile}/>
             <ProfileInfo profileInfo={props.userProfile}/>
-            <MyPostContainer />
-            <PostsContainer />
+            <MyPostContainer/>
+            <PostsContainer/>
         </div>
     );
 };

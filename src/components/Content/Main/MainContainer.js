@@ -21,13 +21,11 @@ class MainContainer extends React.Component {
     }
 
     render() {
-        return (
-            <div>
+        return <>
                 {this.props.isFetching ?
                     <Preloader/> : null}
                 <Main {...this.props} userProfile={this.props.userProfile}/>
-            </div>
-        )
+            </>
     }
 }
 

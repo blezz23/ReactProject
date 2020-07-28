@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
 import Nav from './components/Nav/Nav';
 import News from './components/Content/News/News';
 import Settings from './components/Content/Settings/Settings';
@@ -8,11 +7,12 @@ import {Route} from 'react-router-dom';
 import DialogsContainer from './components/Content/Dialogs/DialogsContainer';
 import FriendsContainer from './components/Content/Friends/FriendsContainer';
 import MainContainer from './components/Content/Main/MainContainer';
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = (props) => {
     return (
         <div className="app-wrapper">
-            <Header />
+            <HeaderContainer />
             <Nav />
             <div className="add-wrapper-content">
                 <Route path="/main/:userId?"
