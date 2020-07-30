@@ -4,6 +4,7 @@ const SET_FRIENDS = 'SET_FRIENDS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const TOTAL_USERS_COUNT = 'TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_FOLLOWING_PROGRESS = 'TOGGLE_FOLLOWING_PROGRESS';
 
 let initialState = {
     friendsData: [],
@@ -11,7 +12,8 @@ let initialState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFriend: false,
-    isFetching: true
+    isFetching: true,
+    followingProgressArray: []
 };
 
 const friendsReducer = (state = initialState, action) => {
@@ -56,6 +58,13 @@ const friendsReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching
             };
+        case TOGGLE_FOLLOWING_PROGRESS:
+            return {
+                ...state,
+                followingProgressArray: action.progressFollow
+                    ? [...state.followingProgressArray, action.userId]
+                    : state.followingProgressArray.filter(id => id !== action.userId)
+            };
         default:
             return state;
     }
@@ -67,5 +76,6 @@ export const setFriends = (friends) => ({type: SET_FRIENDS, friends});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: TOTAL_USERS_COUNT, totalUsersCount});
 export const setToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const followingInProgress = (progressFollow, userId) => ({type: TOGGLE_FOLLOWING_PROGRESS, progressFollow, userId});
 
 export default friendsReducer;
