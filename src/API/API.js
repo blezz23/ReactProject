@@ -32,7 +32,7 @@ export const authMeAPI = {
 
 export const followAPI = {
     follow(id) {
-        return instance.post(`follow/${id}`, {})
+        return instance.post(`follow/${id}`)
             .then(response => response.data)
     },
     unfollow(id) {

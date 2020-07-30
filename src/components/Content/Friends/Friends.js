@@ -35,24 +35,10 @@ const Friends = (props) => {
                     <div>
                         {f.followed
                             ? <button disabled={props.followingProgressArray.some(id => id === f.id)} onClick={() => {
-                                props.followingInProgress(true, f.id);
-                                followAPI.unfollow(f.id)
-                                    .then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.unfollow(f.id)
-                                        }
-                                        props.followingInProgress(false, f.id);
-                                    });
+                                props.unfollow(f.id)
                             }}>Удалить из друзей</button>
                             : <button disabled={props.followingProgressArray.some(id => id === f.id)} onClick={() => {
-                                props.followingInProgress(true, f.id);
-                                followAPI.follow(f.id)
-                                    .then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.follow(f.id)
-                                        }
-                                        props.followingInProgress(false, f.id);
-                                    });
+                                props.follow(f.id)
                             }}>Добавить в друзья</button>}
                     </div>
                 </span>

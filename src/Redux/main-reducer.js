@@ -1,3 +1,5 @@
+import {usersAPI} from "../API/API";
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -46,5 +48,20 @@ export const addPostActionCreator = () => ({type: ADD_POST});
 export const newPostTextActionCreator = (body) => ({type: UPDATE_NEW_POST_TEXT, newTextPost: body});
 export const setUserProfile = (userProfile) => ({type: SET_USER_PROFILE, userProfile});
 export const setToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+
+export const getUserId = (userID) => {
+    return dispatch => {
+        dispatch(setToggleIsFetching(true));
+        let userId = userID;
+        if (!userId) {
+            userId = 2;
+        }
+        usersAPI.getUserId(userId)
+            .then(data => {
+                dispatch(setToggleIsFetching(false));
+                dispatch(setUserProfile(data))
+            });
+    }
+};
 
 export default mainReducer;
