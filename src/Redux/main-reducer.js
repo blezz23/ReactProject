@@ -46,8 +46,8 @@ const mainReducer = (state = initialState, action) => {
 
 export const addPostActionCreator = () => ({type: ADD_POST});
 export const newPostTextActionCreator = (body) => ({type: UPDATE_NEW_POST_TEXT, newTextPost: body});
-export const setUserProfile = (userProfile) => ({type: SET_USER_PROFILE, userProfile});
-export const setToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+const setUserProfile = (userProfile) => ({type: SET_USER_PROFILE, userProfile});
+const setToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 export const getUserId = (userID) => {
     return dispatch => {

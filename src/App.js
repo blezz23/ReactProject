@@ -8,6 +8,7 @@ import DialogsContainer from './components/Content/Dialogs/DialogsContainer';
 import FriendsContainer from './components/Content/Friends/FriendsContainer';
 import MainContainer from './components/Content/Main/MainContainer';
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 const App = (props) => {
     return (
@@ -15,6 +16,8 @@ const App = (props) => {
             <HeaderContainer />
             <Nav />
             <div className="add-wrapper-content">
+                <Route path="/login"
+                       render={() => <Login />} />
                 <Route path="/main/:userId?"
                        render={() => <MainContainer />} />
                 <Route path="/friends"

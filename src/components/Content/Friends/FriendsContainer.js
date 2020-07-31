@@ -2,9 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Friends from './Friends';
 import Preloader from '../../common/Preloader/Preloader';
-import {
-    getFriends, getUsers, unfollow, follow
-} from "../../../Redux/friends-reducer";
+import {getFriends, getUsers, unfollow, follow} from "../../../Redux/friends-reducer";
+import {withAuthRedirect} from "../../../Hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class FriendsContainer extends React.Component {
     componentDidMount() {
@@ -33,18 +33,20 @@ class FriendsContainer extends React.Component {
     }
 }
 
-let mapStateToProps = (props) => {
+let mapStateToProps = (state) => {
     return {
-        friendsData: props.friendsPage.friendsData,
-        pageSize: props.friendsPage.pageSize,
-        totalUsersCount: props.friendsPage.totalUsersCount,
-        currentPage: props.friendsPage.currentPage,
-        isFriend: props.friendsPage.isFriend,
-        isFetching: props.friendsPage.isFetching,
-        followingProgressArray: props.friendsPage.followingProgressArray
+        friendsData: state.friendsPage.friendsData,
+        pageSize: state.friendsPage.pageSize,
+        totalUsersCount: state.friendsPage.totalUsersCount,
+        currentPage: state.friendsPage.currentPage,
+        isFriend: state.friendsPage.isFriend,
+        isFetching: state.friendsPage.isFetching,
+        followingProgressArray: state.friendsPage.followingProgressArray,
     }
 };
 
-export default connect(mapStateToProps, {
-    getFriends, getUsers, unfollow, follow})(FriendsContainer);
+export default compose(
+    connect(mapStateToProps, {getFriends, getUsers, unfollow, follow}),
+    withAuthRedirect
+)(FriendsContainer);
 

@@ -2,7 +2,6 @@ import s from './Friends.module.css';
 import userPhoto from '../../../Redux/123.png';
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import {followAPI} from "../../../API/API";
 
 const Friends = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);

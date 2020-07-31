@@ -4,6 +4,8 @@ import {getUserId} from '../../../Redux/main-reducer';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import Preloader from '../../common/Preloader/Preloader';
+import {withAuthRedirect} from "../../../Hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class MainContainer extends React.Component {
     componentDidMount() {
@@ -19,11 +21,13 @@ class MainContainer extends React.Component {
     }
 }
 
-let mapStateToProps = (props) => ({
-    userProfile: props.mainPage.userProfile,
-    isFetching: props.mainPage.isFetching
+let mapStateToProps = (state) => ({
+    userProfile: state.mainPage.userProfile,
+    isFetching: state.mainPage.isFetching,
 });
 
-let WithUrlDataContainerComponent = withRouter(MainContainer);
-
-export default connect(mapStateToProps, {getUserId})(WithUrlDataContainerComponent);
+export default compose(
+    connect(mapStateToProps, {getUserId}),
+    withRouter,
+    withAuthRedirect
+)(MainContainer);
