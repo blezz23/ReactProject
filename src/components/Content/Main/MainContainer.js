@@ -16,7 +16,7 @@ class MainContainer extends React.Component {
         return <>
                 {this.props.isFetching ?
                     <Preloader/> : null}
-                <Main {...this.props} userProfile={this.props.userProfile}/>
+                <Main userProfile={this.props.userProfile}/>
             </>
     }
 }

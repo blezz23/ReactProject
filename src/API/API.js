@@ -40,3 +40,10 @@ export const followAPI = {
             .then(response => response.data)
     }
 };
+
+export const profileAPI = {
+    updateStatus(status) {
+        return instance.put(`profile/status`, {status})
+            .then(response => response.data)
+    }
+};
