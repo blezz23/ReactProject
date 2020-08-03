@@ -1,6 +1,6 @@
 import React from 'react';
 import Main from './Main';
-import {getUserId} from '../../../Redux/main-reducer';
+import {getStatus, getUserId, updateStatus} from '../../../Redux/main-reducer';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import Preloader from '../../common/Preloader/Preloader';
@@ -9,25 +9,34 @@ import {compose} from "redux";
 
 class MainContainer extends React.Component {
     componentDidMount() {
-        this.props.getUserId(this.props.match.params.userId)
+        let userId = this.props.match.params.userId;
+        if (!userId) {
+            userId = 9569;
+        }
+        this.props.getUserId(userId);
+        this.props.getStatus(userId);
     }
 
     render() {
         return <>
                 {this.props.isFetching ?
                     <Preloader/> : null}
-                <Main userProfile={this.props.userProfile}/>
+                <Main
+                    userProfile={this.props.userProfile}
+                    status={this.props.status}
+                    updateStatus={this.props.updateStatus} />
             </>
     }
 }
 
 let mapStateToProps = (state) => ({
     userProfile: state.mainPage.userProfile,
-    isFetching: state.mainPage.isFetching,
+    status: state.mainPage.status,
+    isFetching: state.mainPage.isFetching
 });
 
 export default compose(
-    connect(mapStateToProps, {getUserId}),
+    connect(mapStateToProps, {getUserId, getStatus, updateStatus}),
     withRouter,
     withAuthRedirect
 )(MainContainer);

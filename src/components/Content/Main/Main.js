@@ -9,7 +9,7 @@ const Main = (props) => {
     return (
         <div className={s.content}>
             <Avatar avatar={props.userProfile}/>
-            <ProfileInfo profileInfo={props.userProfile}/>
+            <ProfileInfo profileInfo={props.userProfile} status={props.status} updateStatus={props.updateStatus}/>
             <MyPostContainer/>
             <PostsContainer/>
         </div>

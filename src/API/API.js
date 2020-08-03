@@ -16,10 +16,6 @@ export const usersAPI = {
     getFriends(currentPage, pageSize, isFriend = false) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}&friend=${isFriend}`)
             .then(response => response.data)
-    },
-    getUserId(userId) {
-        return instance.get(`profile/${userId}`)
-            .then(response => response.data)
     }
 };
 
@@ -42,8 +38,14 @@ export const followAPI = {
 };
 
 export const profileAPI = {
+    getStatus(userId) {
+        return instance.get(`profile/status/${userId}`)
+    },
     updateStatus(status) {
-        return instance.put(`profile/status`, {status})
+        return instance.put('profile/status', {status})
+    },
+    getUserId(userId) {
+        return instance.get(`profile/${userId}`)
             .then(response => response.data)
     }
 };
