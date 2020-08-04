@@ -1,19 +1,19 @@
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
-import {authMeAPI} from "../../API/API";
-import {authMe} from "../../Redux/auth-reducer";
 import {Input} from "../common/FormsControls/FormsControls";
 import {maxLengthCreator, required} from "../../Utilities/validators/validators";
+import {login} from "../../Redux/auth-reducer";
+import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-        authMeAPI.login(formData)
-            .then(response => {
-            if (response.resultCode === 0) {
-                authMe()
-            }
-        })
+        props.login(formData.email, formData.password, formData.rememberMe);
     };
+
+    if (props.isAuth) {
+        return <Redirect to={'/main'} />
+    }
 
     return (
         <div>
@@ -29,8 +29,8 @@ const LoginForm = (props) => {
     return <form onSubmit={props.handleSubmit}>
         <div>
             <Field
-                placeholder={'Login'}
-                name={'login'}
+                placeholder={'Email'}
+                name={'email'}
                 validate={[required, maxLength20]}
                 component={Input} />
         </div>
@@ -38,6 +38,7 @@ const LoginForm = (props) => {
             <Field
                 placeholder={'Password'}
                 name={'password'}
+                type={'password'}
                 validate={[required, maxLength20]}
                 component={Input} />
         </div>
@@ -53,6 +54,12 @@ const LoginForm = (props) => {
     </form>
 };
 
+const mapStateToProps = (state) => {
+    return {
+        isAuth: state.auth.data.isAuth
+    }
+};
+
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
-export default Login;
+export default connect(mapStateToProps, {login})(Login);
