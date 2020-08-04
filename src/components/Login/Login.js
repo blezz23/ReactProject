@@ -2,6 +2,8 @@ import React from 'react';
 import {Field, reduxForm} from "redux-form";
 import {authMeAPI} from "../../API/API";
 import {authMe} from "../../Redux/auth-reducer";
+import {Input} from "../common/FormsControls/FormsControls";
+import {maxLengthCreator, required} from "../../Utilities/validators/validators";
 
 const Login = (props) => {
     const onSubmit = (formData) => {
@@ -21,16 +23,29 @@ const Login = (props) => {
     )
 };
 
+let maxLength20 = maxLengthCreator(20);
+
 const LoginForm = (props) => {
     return <form onSubmit={props.handleSubmit}>
         <div>
-            <Field placeholder={'Login'} name={'login'} component={'input'} />
+            <Field
+                placeholder={'Login'}
+                name={'login'}
+                validate={[required, maxLength20]}
+                component={Input} />
         </div>
         <div>
-            <Field placeholder={'Password'} name={'password'} component={'input'} />
+            <Field
+                placeholder={'Password'}
+                name={'password'}
+                validate={[required, maxLength20]}
+                component={Input} />
         </div>
         <div>
-            <Field component={'input'} name={'rememberMe'} type={'checkbox'} /> Запомнить меня
+            <Field
+                component={Input}
+                name={'rememberMe'}
+                type={'checkbox'} /> Запомнить меня
         </div>
         <div>
             <button>Login</button>

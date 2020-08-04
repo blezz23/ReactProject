@@ -1,7 +1,7 @@
 import React from 'react';
-import {addPostAC} from "../../../../../Redux/main-reducer";
-import MyPost from "./MyPost";
-import {connect} from "react-redux";
+import {addPostAC} from '../../../../../Redux/main-reducer';
+import MyPost from './MyPost';
+import {connect} from 'react-redux';
 
 let mapDispatchToProps = (dispatch) => {
     return {
