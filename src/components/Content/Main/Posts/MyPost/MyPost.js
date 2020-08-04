@@ -1,23 +1,29 @@
 import React from 'react';
 import s from "./MyPost.module.css"
+import {Field, reduxForm} from "redux-form";
+
+const AddMyPost = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field
+                component={'textarea'}
+                placeholder={'Введите сообщение'}
+                name={'newPostBody'}/>
+            <button>Добавить пост</button>
+        </form>
+    )
+};
+
+const AddMyPostRedux = reduxForm({form: 'postAddMessageForm'})(AddMyPost);
 
 const MyPost = (props) => {
-    let newPostBody = props.newPostText;
-    let onAddPost = () => {
-        props.addPost();
-    };
-    let onPostChange = (e) => {
-        let body = e.target.value;
-        props.postChange(body);
+    let addPost = (values) => {
+        props.addPost(values.newPostBody);
     };
 
     return (
         <div className={s.myPost}>
-            <div>
-                <textarea placeholder="Введите сообщение" onChange={onPostChange} value={newPostBody}/>
-                <button onClick={onAddPost}>Добавить пост</button>
-                <button>Отложенный пост</button>
-            </div>
+            <AddMyPostRedux onSubmit={addPost} />
         </div>
     );
 };

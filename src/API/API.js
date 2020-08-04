@@ -23,6 +23,10 @@ export const authMeAPI = {
     authMe() {
         return instance.get('auth/me')
             .then(response => response.data)
+    },
+    login(formData) {
+        return instance.post('auth/login',
+            {email: formData.login, password: formData.password, rememberMe: formData.rememberMe || false})
     }
 };
 

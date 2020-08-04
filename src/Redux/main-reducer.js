@@ -1,15 +1,13 @@
 import {profileAPI} from "../API/API";
 
-const ADD_POST = 'ADD-POST';
+const ADD_POST = 'ADD_POST';
 const SET_STATUS = 'SET_STATUS';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
     postsData: [],
     userProfile: null,
-    newPostText: '',
     status: '',
     isFetching: true
 };
@@ -17,24 +15,15 @@ let initialState = {
 const mainReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            let newPost = {
-                id: 4,
-                message: state.newPostText
-            };
+            let body = action.newPostText;
             return {
                 ...state,
-                postsData: [...state.postsData, newPost],
-                newPostText: ''
+                postsData: [...state.postsData, {id: 4, message: body}]
             };
-            case SET_STATUS:
+        case SET_STATUS:
             return {
                 ...state,
                 status: action.status
-            };
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newTextPost
             };
         case SET_USER_PROFILE:
             return {
@@ -51,8 +40,7 @@ const mainReducer = (state = initialState, action) => {
     }
 };
 
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const newPostTextActionCreator = (body) => ({type: UPDATE_NEW_POST_TEXT, newTextPost: body});
+export const addPostAC = (newPostText) => ({type: ADD_POST, newPostText});
 const setUserProfile = (userProfile) => ({type: SET_USER_PROFILE, userProfile});
 const setToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 const setStatus = (status) => ({type: SET_STATUS, status});
@@ -81,10 +69,10 @@ export const updateStatus = (statusText) => {
     return dispatch => {
         profileAPI.updateStatus(statusText)
             .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setStatus(statusText))
-            }
-        })
+                if (response.data.resultCode === 0) {
+                    dispatch(setStatus(statusText))
+                }
+            })
     }
 };
 

@@ -1,9 +1,16 @@
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
+import {authMeAPI} from "../../API/API";
+import {authMe} from "../../Redux/auth-reducer";
 
 const Login = (props) => {
     const onSubmit = (formData) => {
-
+        authMeAPI.login(formData)
+            .then(response => {
+            if (response.resultCode === 0) {
+                authMe()
+            }
+        })
     };
 
     return (
@@ -31,8 +38,6 @@ const LoginForm = (props) => {
     </form>
 };
 
-const LoginReduxForm = reduxForm({
-    form: 'login'
-})(LoginForm);
+const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm);
 
 export default Login;

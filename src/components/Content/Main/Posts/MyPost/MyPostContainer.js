@@ -1,24 +1,16 @@
 import React from 'react';
-import {addPostActionCreator, newPostTextActionCreator} from "../../../../../Redux/main-reducer";
+import {addPostAC} from "../../../../../Redux/main-reducer";
 import MyPost from "./MyPost";
 import {connect} from "react-redux";
 
-let mapStateToProps = (state) => {
-    return {
-        newPostText: state.mainPage.newPostText
-    }
-};
 let mapDispatchToProps = (dispatch) => {
     return {
-        addPost: () => {
-            dispatch(addPostActionCreator());
-        },
-        postChange: (body) => {
-            dispatch(newPostTextActionCreator(body));
+        addPost: (newPostText) => {
+            dispatch(addPostAC(newPostText));
         }
     }
 };
 
-const MyPostContainer = connect(mapStateToProps, mapDispatchToProps) (MyPost);
+const MyPostContainer = connect(null, mapDispatchToProps) (MyPost);
 
 export default MyPostContainer;
