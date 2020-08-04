@@ -1,10 +1,11 @@
 import React from 'react';
-import {Field, reduxForm} from "redux-form";
-import {Input} from "../common/FormsControls/FormsControls";
-import {maxLengthCreator, required} from "../../Utilities/validators/validators";
-import {login} from "../../Redux/auth-reducer";
-import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
+import {Field, reduxForm} from 'redux-form';
+import {Input} from '../common/FormsControls/FormsControls';
+import {maxLengthCreator, required} from '../../Utilities/validators/validators';
+import {login} from '../../Redux/auth-reducer';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
+import styles from '../../Hoc/ElementForm.module.css';
 
 const Login = (props) => {
     const onSubmit = (formData) => {
@@ -48,6 +49,9 @@ const LoginForm = (props) => {
                 name={'rememberMe'}
                 type={'checkbox'} /> Запомнить меня
         </div>
+        { props.error && <div className={styles.formSummaryError}>
+            {props.error}
+        </div>}
         <div>
             <button>Login</button>
         </div>

@@ -11,7 +11,7 @@ class MainContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = 9569;
+            userId = this.props.authUserId;
         }
         this.props.getUserId(userId);
         this.props.getStatus(userId);
@@ -32,7 +32,9 @@ class MainContainer extends React.Component {
 let mapStateToProps = (state) => ({
     userProfile: state.mainPage.userProfile,
     status: state.mainPage.status,
-    isFetching: state.mainPage.isFetching
+    isFetching: state.mainPage.isFetching,
+    authUserId: state.auth.data.id,
+    isAuth: state.auth.data.isAuth
 });
 
 export default compose(
