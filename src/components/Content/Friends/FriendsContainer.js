@@ -2,9 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Friends from './Friends';
 import Preloader from '../../common/Preloader/Preloader';
-import {getFriends, getUsers, unfollow, follow} from "../../../Redux/friends-reducer";
+import {getUsers, unfollow, follow, getFriends} from "../../../Redux/reducers/friends-reducer";
 import {withAuthRedirect} from "../../../Hoc/withAuthRedirect";
 import {compose} from "redux";
+import {getFollowingProgressArray, getCurrentPage, getFriendsSelector, getPageSize,
+    getTotalUsersCount, getIsFetching, getIsFriend} from "../../../Redux/selectors/users-selector";
 
 class FriendsContainer extends React.Component {
     componentDidMount() {
@@ -35,13 +37,13 @@ class FriendsContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        friendsData: state.friendsPage.friendsData,
-        pageSize: state.friendsPage.pageSize,
-        totalUsersCount: state.friendsPage.totalUsersCount,
-        currentPage: state.friendsPage.currentPage,
-        isFriend: state.friendsPage.isFriend,
-        isFetching: state.friendsPage.isFetching,
-        followingProgressArray: state.friendsPage.followingProgressArray,
+        friendsData: getFriendsSelector(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFriend: getIsFriend(state),
+        isFetching: getIsFetching(state),
+        followingProgressArray: getFollowingProgressArray(state),
     }
 };
 

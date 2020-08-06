@@ -1,6 +1,6 @@
 import React from 'react';
 import Main from './Main';
-import {getStatus, getUserId, updateStatus} from '../../../Redux/main-reducer';
+import {getStatus, getUserId, updateStatus} from '../../../Redux/reducers/main-reducer';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import Preloader from '../../common/Preloader/Preloader';

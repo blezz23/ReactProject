@@ -1,4 +1,4 @@
-import {profileAPI} from "../API/API";
+import {profileAPI} from "../../API/API";
 
 const ADD_POST = 'ADD_POST';
 const SET_STATUS = 'SET_STATUS';

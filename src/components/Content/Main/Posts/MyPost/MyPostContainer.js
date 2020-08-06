@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPostAC} from '../../../../../Redux/main-reducer';
+import {addPostAC} from '../../../../../Redux/reducers/main-reducer';
 import MyPost from './MyPost';
 import {connect} from 'react-redux';
 

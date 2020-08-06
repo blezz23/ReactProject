@@ -2,7 +2,7 @@ import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {Input} from '../common/FormsControls/FormsControls';
 import {maxLengthCreator, required} from '../../Utilities/validators/validators';
-import {login} from '../../Redux/auth-reducer';
+import {login} from '../../Redux/reducers/auth-reducer';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import styles from '../../Hoc/ElementForm.module.css';
