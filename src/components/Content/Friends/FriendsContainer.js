@@ -5,8 +5,10 @@ import Preloader from '../../common/Preloader/Preloader';
 import {getUsers, unfollow, follow, getFriends} from "../../../Redux/reducers/friends-reducer";
 import {withAuthRedirect} from "../../../Hoc/withAuthRedirect";
 import {compose} from "redux";
-import {getFollowingProgressArray, getCurrentPage, getFriendsSelector, getPageSize,
-    getTotalUsersCount, getIsFetching, getIsFriend} from "../../../Redux/selectors/users-selector";
+import {
+    getFollowingProgressArray, getCurrentPage, getPageSize,
+    getTotalUsersCount, getIsFetching, getIsFriend, getFriendsSuperSelector
+} from "../../../Redux/selectors/users-selector";
 
 class FriendsContainer extends React.Component {
     componentDidMount() {
@@ -37,7 +39,7 @@ class FriendsContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        friendsData: getFriendsSelector(state),
+        friendsData: getFriendsSuperSelector(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),

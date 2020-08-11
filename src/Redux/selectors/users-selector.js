@@ -1,6 +1,12 @@
-export const getFriendsSelector = (state) => {
+import {createSelector} from "reselect";
+
+const getFriendsSelector = (state) => {
     return state.friendsPage.friendsData;
 };
+
+export const getFriendsSuperSelector = createSelector(getFriendsSelector, (friends) => {
+    return friends.filter(f => true)
+});
 
 export const getPageSize = (state) => {
     return state.friendsPage.pageSize;

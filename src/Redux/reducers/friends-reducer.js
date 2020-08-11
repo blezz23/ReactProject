@@ -9,6 +9,7 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const TOGGLE_FOLLOWING_PROGRESS = 'TOGGLE_FOLLOWING_PROGRESS';
 
 let initialState = {
+    usersData: [],
     friendsData: [],
     pageSize: 10,
     totalUsersCount: 0,
