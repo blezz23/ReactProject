@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
     let contactsObj = {};
@@ -17,7 +17,7 @@ const ProfileInfo = (props) => {
             <div className={s.fullName}>{props.profileInfo?.fullName}</div>
             {props.profileInfo?.userId !== 9569
             ? <div className={s.about}>Статус: {props.status}</div>
-            : <ProfileStatus
+            : <ProfileStatusWithHooks
                     updateStatus={props.updateStatus}
                     status={props.status} />}
             <div className={s.contacts}>Мои сайты: {contactsArray.join(', ')}</div>
