@@ -1,12 +1,16 @@
 import {profileAPI} from "../../API/API";
 
 const ADD_POST = 'ADD_POST';
+const DELETE_POST = 'DELETE_POST';
 const SET_STATUS = 'SET_STATUS';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 let initialState = {
-    postsData: [],
+    postsData: [
+        {id: 1, message: 'Lol'},
+        {id: 2, message: 'ne lol'},
+        {id: 3, message: 'samurai!!!'}],
     userProfile: null,
     status: '',
     isFetching: true
@@ -19,6 +23,11 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state,
                 postsData: [...state.postsData, {id: 4, message: body}]
+            };
+        case DELETE_POST:
+            return {
+                ...state,
+                postsData: state.postsData.filter(p => p.id !== action.postId)
             };
         case SET_STATUS:
             return {
@@ -41,6 +50,7 @@ const mainReducer = (state = initialState, action) => {
 };
 
 export const addPostAC = (newPostText) => ({type: ADD_POST, newPostText});
+export const deletePostAC = (postId) => ({type: DELETE_POST, postId});
 const setUserProfile = (userProfile) => ({type: SET_USER_PROFILE, userProfile});
 const setToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 const setStatus = (status) => ({type: SET_STATUS, status});
