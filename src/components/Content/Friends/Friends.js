@@ -1,47 +1,25 @@
-import s from './Friends.module.css';
-import userPhoto from '../../../Redux/123.png';
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {Paginator} from "../../common/Paginator/Paginator";
+import Friend from "./Friend";
 
 const Friends = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-
     return (
-        <div className={s.friends}>
+        <div>
+            <Paginator
+                totalUsersCount={props.totalUsersCount}
+                pageSize={props.pageSize}
+                currentPage={props.currentPage}
+                onPageChanged={props.onPageChanged}/>
             <div>
-                {pages.map(p => {
-                    return <span className={`${props.currentPage === p && s.selectedPage} ${s.pagesNumbers}`}
-                                 onClick={(event) => {
-                                     props.onPageChanged(p)
-                                 }}>{p}</span>
-                })}
+                {
+                    props.friendsData.map(f => <Friend
+                        friend={f}
+                        followingProgressArray={props.followingProgressArray}
+                        follow={props.follow}
+                        unfollow={props.unfollow}/>
+                    )
+                }
             </div>
-            {props.friendsData.map(f =>
-                <div className={s.friend} key={f.id}>
-                <span>
-                    <div>
-                        <NavLink to={'/main/' + f.id}>
-                            <img alt="" src={f.photos.small != null ? f.photos.small : userPhoto}/>
-                        </NavLink>
-                    </div>
-                    <div>
-                        {f.name}
-                    </div>
-                    <div>
-                        {f.followed
-                            ? <button disabled={props.followingProgressArray.some(id => id === f.id)} onClick={() => {
-                                props.unfollow(f.id)
-                            }}>Удалить из друзей</button>
-                            : <button disabled={props.followingProgressArray.some(id => id === f.id)} onClick={() => {
-                                props.follow(f.id)
-                            }}>Добавить в друзья</button>}
-                    </div>
-                </span>
-                </div>)}
         </div>
     )
 };

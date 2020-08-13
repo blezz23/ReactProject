@@ -1,10 +1,10 @@
 import {profileAPI} from "../../API/API";
 
-const ADD_POST = 'ADD_POST';
-const DELETE_POST = 'DELETE_POST';
-const SET_STATUS = 'SET_STATUS';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const ADD_POST = 'main/ADD_POST';
+const DELETE_POST = 'main/DELETE_POST';
+const SET_STATUS = 'main/SET_STATUS';
+const SET_USER_PROFILE = 'main/SET_USER_PROFILE';
+const TOGGLE_IS_FETCHING = 'main/TOGGLE_IS_FETCHING';
 
 let initialState = {
     postsData: [
@@ -55,34 +55,22 @@ const setUserProfile = (userProfile) => ({type: SET_USER_PROFILE, userProfile});
 const setToggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 const setStatus = (status) => ({type: SET_STATUS, status});
 
-export const getUserId = (userId) => {
-    return dispatch => {
-        dispatch(setToggleIsFetching(true));
-        profileAPI.getUserId(userId)
-            .then(data => {
-                dispatch(setToggleIsFetching(false));
-                dispatch(setUserProfile(data))
-            });
-    }
+export const getUserId = (userId) => async (dispatch) => {
+    dispatch(setToggleIsFetching(true));
+    let response = await profileAPI.getUserId(userId);
+    dispatch(setToggleIsFetching(false));
+    dispatch(setUserProfile(response.data));
 };
 
-export const getStatus = (userId) => {
-    return dispatch => {
-        profileAPI.getStatus(userId)
-            .then(response => {
-                dispatch(setStatus(response.data))
-            })
-    }
+export const getStatus = (userId) => async (dispatch) => {
+    let response = await profileAPI.getStatus(userId);
+    dispatch(setStatus(response.data))
 };
 
-export const updateStatus = (statusText) => {
-    return dispatch => {
-        profileAPI.updateStatus(statusText)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(setStatus(statusText))
-                }
-            })
+export const updateStatus = (statusText) => async (dispatch) => {
+    let response = await profileAPI.updateStatus(statusText);
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(statusText))
     }
 };
 
